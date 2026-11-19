@@ -1,0 +1,411 @@
+/* --- Global Styles & Box Model --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #030312;
+    color: #f0f0f5;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+header h1, h2, h3 {
+    font-family: 'Road Rage', 'Bebas Neue', cursive, sans-serif;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+header h1 {
+    font-size: 4.5rem; 
+    color: #ffffff;
+    margin-bottom: 0.3rem;
+}
+
+h2 {
+    font-size: 3rem;   
+    color: #5588ff;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+}
+
+h3 {
+    font-size: 2.2rem; 
+    color: #ffffff;
+    margin-bottom: 0.3rem;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #1a1a40;
+    margin: 4rem 0;
+}
+
+.spotlight-box {
+    position: relative;
+    overflow: hidden;
+    --spot-x: 50%;
+    --spot-y: 50%;
+    --spot-size: 230px;
+}
+
+.spotlight-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle var(--spot-size) at var(--spot-x) var(--spot-y),
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(195, 215, 255, 0.06) 38%,
+        rgba(255, 255, 255, 0) 72%
+    );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.spotlight-box.is-lit::before {
+    opacity: 1;
+}
+
+.spotlight-box > * {
+    position: relative;
+    z-index: 2;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background-color: #070722;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #1c1c55;
+    box-shadow: 0 4px 20px rgba(0, 0, 150, 0.2);
+}
+
+.photo-frame {
+    flex: 0 0 200px;
+    height: 240px;
+    background-color: #02020a;
+    border: 2px solid #4466cc;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bio-text {
+    flex: 1;
+    text-align: justify;
+}
+
+.bio-text p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.loves-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 720px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.loves-stage {
+    position: relative;
+    width: 520px;
+    height: 290px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.love-card {
+    position: absolute;
+    width: 210px;
+    padding: 12px;
+    background-color: #10103a;
+    border: 1.5px solid #4466cc;
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(0, 0, 20, 0.85);
+    cursor: pointer;
+    user-select: none;
+    --spot-size: 150px;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.45s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.love-card img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.love-card p {
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin: 10px 0 2px 0;
+    color: #f0f0f5;
+    text-align: center;
+}
+
+.love-card.is-center {
+    transform: translateX(0) scale(1);
+    z-index: 5;
+    opacity: 1;
+    background-color: #131347;
+    border-color: #5588ff;
+    box-shadow: 0 14px 35px rgba(0, 0, 120, 0.45);
+}
+
+.love-card.is-left-1 {
+    transform: translateX(-85px) scale(0.84);
+    z-index: 3;
+    opacity: 0.85;
+}
+
+.love-card.is-right-1 {
+    transform: translateX(85px) scale(0.84);
+    z-index: 3;
+    opacity: 0.85;
+}
+
+.love-card.is-left-2 {
+    transform: translateX(-150px) scale(0.68);
+    z-index: 1;
+    opacity: 0.55;
+}
+
+.love-card.is-right-2 {
+    transform: translateX(150px) scale(0.68);
+    z-index: 1;
+    opacity: 0.55;
+}
+
+.love-card:not(.is-center):hover {
+    border-color: #6699ff;
+    opacity: 1;
+}
+
+.carousel-btn {
+    background-color: #070722;
+    color: #6699ff;
+    border: 1px solid #4466cc;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-btn:hover {
+    background-color: #131347;
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+.carousel-btn:focus-visible {
+    outline: 2px solid #6699ff;
+    outline-offset: 3px;
+}
+
+.projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 750px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.project-card {
+    background-color: #070722;
+    border: 1px solid #1c1c55;
+    border-radius: 8px;
+    padding: 1.5rem 2rem 2rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 150, 0.2);
+    text-align: left;
+    --spot-size: 280px;
+}
+
+.project-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+}
+
+.project-date {
+    font-size: 0.9rem;
+    color: #9999cc;
+    margin-bottom: 1rem;
+}
+
+.project-description {
+    font-size: 1rem;
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.player-wrapper,
+.video-wrapper {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #1c1c55;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.player-wrapper iframe {
+    width: 100%;
+    border: 0;
+    display: block;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    background-color: #02020a;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+a {
+    color: #6699ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    outline: 2px solid #6699ff;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+.back-to-top {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    hr {
+        margin: 2.5rem 0;
+    }
+
+    header h1 {
+        font-size: 3.2rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    .about-container {
+        flex-direction: column;
+        padding: 1.2rem;
+    }
+
+    .photo-frame {
+        flex: none;
+        width: 200px;
+        height: 240px;
+    }
+
+    .loves-carousel {
+        gap: 0.4rem;
+    }
+
+    .loves-stage {
+        width: 270px;
+        height: 245px;
+    }
+
+    .love-card {
+        width: 155px;
+        padding: 9px;
+    }
+
+    .love-card img {
+        height: 135px;
+    }
+
+    .love-card.is-left-1 {
+        transform: translateX(-52px) scale(0.84);
+    }
+
+    .love-card.is-right-1 {
+        transform: translateX(52px) scale(0.84);
+    }
+
+    .love-card.is-left-2 {
+        transform: translateX(-88px) scale(0.68);
+    }
+
+    .love-card.is-right-2 {
+        transform: translateX(88px) scale(0.68);
+    }
+
+    .carousel-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
+    }
+
+    .project-card {
+        padding: 1rem 1.2rem 1.2rem 1.2rem;
+    }
+}
